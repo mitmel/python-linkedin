@@ -116,7 +116,7 @@ class LinkedInAuthentication(object):
               'client_id': self.key,
               'client_secret': self.secret}
         try:
-            response = requests.post(self.ACCESS_TOKEN_URL, data=qd, timeout=timeout)
+            response = requests.post(self.ACCESS_TOKEN_URL + '?' + urllib.urlencode(qd), timeout=timeout)
             response.raise_for_status()
             response = response.json()
         except (requests.HTTPError, requests.ConnectionError), error:
